@@ -1,30 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const productController = require('../controllers/main/product');
+// Import Product Router
+const productRouter = require('./main/product');
+router.use(productRouter);
 
-// Create New Product
-router.route('/products').post();
+// Import Category Router
+const categoryRouter = require('./main/category');
+router.use(categoryRouter);
 
-// Get All Products
-router.route('/products').get();
-
-// Get Single Product By Id
-router.route('/products/:productId').get();
-
-// Update Single Product By Id
-router.route('/products/:productId').put();
-
-// Delete Single Product By Id
-router.route('/products/:productId').delete();
-
-// Get All Categories
-router.route('/categories').get();
-
-// Get All Products By CategoryId
-router.route('/categories/:categoryId/products').get();
-
-// Get All Product By Category Id
-router.route('/categories/:categoryId').delete();
+// Import User Router
+const userRouter = require('./main/user');
+router.use(userRouter);
 
 module.exports = router;
