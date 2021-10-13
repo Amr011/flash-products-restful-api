@@ -1,25 +1,35 @@
 {
-    "name": "flash-products-restful-api",
-    "version": "1.0.0",
-    "description": "This Project Made As A Task For Company => dataline-qa.com",
-    "main": "server.js",
-    "scripts": {
-        "dev": "nodemon server.js"
-    },
-    "keywords": [],
-    "author": "Amr Aboras",
-    "license": "ISC",
-    "dependencies": {
-        "bcrypt": "^5.0.1",
-        "body-parser": "^1.19.0",
-        "cookie-parser": "^1.4.5",
-        "cors": "^2.8.5",
-        "dotenv": "^10.0.0",
-        "express": "^4.17.1",
-        "jsonwebtoken": "^8.5.1",
-        "morgan": "^1.10.0",
-        "mysql2": "^2.3.0",
-        "nodemon": "^2.0.13",
-        "sequelize": "^6.7.0"
-    }
+  "name": "flash-products-restful-api",
+  "version": "1.0.0",
+  "description": "This Project Made As A Task For Company => dataline-qa.com",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Amr Aboras",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.0",
+    "nodemon": "^2.0.13",
+    "sequelize": "^6.7.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amr011/flash-products-restful-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Amr011/flash-products-restful-api/issues"
+  },
+  "homepage": "https://github.com/Amr011/flash-products-restful-api#readme"
 }

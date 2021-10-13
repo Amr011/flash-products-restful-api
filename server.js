@@ -26,6 +26,11 @@ dotenv.config();
 const db = require('./src/models/index.model');
 db.sequelize.sync();
 
+// Main Routes Source
+
+const indexRoute = require('./src/routes/index.route');
+app.use(indexRoute);
+
 // Recepion API
 app.get('/', (req, res) => {
   return res.status(200).json({
