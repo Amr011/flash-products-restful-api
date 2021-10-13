@@ -1,6 +1,6 @@
 # Flash Products Restful Api
 
-## This Project Made As A Task For Company => dataline-qa.com
+## This Project Made As A Task For A Company
 
 # Setup
 
