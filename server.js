@@ -25,7 +25,7 @@ dotenv.config();
 // Database Configuerations
 const db = require('./src/models/index.model');
 db.sequelize.sync({ force: true }).then(() => {
-    console.log('database re-synced successfully !');
+   console.log('database re-synced successfully !');
 });
 
 // Main Routes Source
@@ -34,23 +34,23 @@ app.use(indexRoute);
 
 // Recepion API
 app.get('/', (req, res) => {
-    return res.status(200).json({
-        success: true,
-        message: 'Welcome To This API, Have Fun 😘',
-        author: 'Amr Aboras',
-    });
+   return res.status(200).json({
+      success: true,
+      message: 'Welcome To This API, Have Fun 😘',
+      author: 'Amr Aboras',
+   });
 });
 
 // Unavailable Request
 app.use((req, res) => {
-    res.status(404).json({
-        error: 'This Request Is Not Available !!',
-    });
+   res.status(404).json({
+      error: 'This Request Is Not Available !!',
+   });
 });
 
 // Server Listening
 const port = process.env.PORT || 2021;
 
 app.listen(port, () => {
-    console.log(`Server is successfully running on port : ${port} !!`);
+   console.log(`Server is successfully running on port : ${port} !!`);
 });

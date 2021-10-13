@@ -7,15 +7,17 @@ const productController = require('../../controllers/main/product');
 router.route('/products').post();
 
 // Get All Products
-router.route('/products').get();
+router.route('/products').get(productController.getAllProducts);
 
 // Get Single Product By Id
-router.route('/products/:productId').get();
+router.route('/products/:productId').get(productController.getSingleProduct);
 
 // Update Single Product By Id
-router.route('/products/:productId').put();
+router.route('/products/:productId').put(productController.updateSingleProduct);
 
 // Delete Single Product By Id
-router.route('/products/:productId').delete();
+router
+   .route('/products/:productId')
+   .delete(productController.deleteSingleProduct);
 
 module.exports = router;

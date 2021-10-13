@@ -3,44 +3,84 @@ const db = require('../../models/index.model');
 const productModel = db.product;
 
 class product {
-    // Get all products that are supposed to show up at the current time
-    static getAllProducts = async (req, res) => {
-        try {
-            const attributes = [];
-            const order = [[]];
-            const include = [];
-            const where = {};
-            const productData = productModel.findAll({
-                where,
-                order,
-                attributes,
-                include,
+   // Create New Product
+   static createProduct = async (req, res) => {};
+
+   // Get all products that are supposed to show up at the current time
+   static getAllProducts = async (req, res) => {
+      try {
+         const attributes = [];
+         const order = [[]];
+         const include = [];
+         const where = {};
+         const productData = productModel.findAll({
+            where,
+            order,
+            attributes,
+            include,
+         });
+         if (productData) {
+            return res.status(200).json({
+               success: true,
+               status: 200,
+               message: 'Products Found Successfully !',
+               data: productData,
             });
-            if (productData) {
-                return res.status(200).json({
-                    success: true,
-                    status: 200,
-                    message: 'Products Found Successfully !',
-                    data: productData,
-                });
-            } else {
-                return res.status(400).json({
-                    success: false,
-                    status: 400,
-                    message: 'Products Are Not Found',
-                });
-            }
-        } catch (err) {
-            console.log(err);
+         } else {
             return res.status(400).json({
-                message: 'Unexpected Error',
-                status: 400,
-                error: err,
+               success: false,
+               status: 400,
+               message: 'Products Are Not Found',
             });
-        }
-    };
-    // Get Single Product
-    static getSingleProduct = (req, res) => {};
+         }
+      } catch (err) {
+         console.log(err);
+         return res.status(400).json({
+            message: 'Unexpected Error',
+            status: 400,
+            error: err,
+         });
+      }
+   };
+
+   // Get Single Product By Id
+   static getSingleProduct = async (req, res) => {
+      try {
+      } catch (err) {
+         console.log(err);
+         return res.status(400).json({
+            message: 'Unexpected Error',
+            status: 400,
+            error: err,
+         });
+      }
+   };
+
+   // Update Single Product By Id
+   static updateSingleProduct = async (req, res) => {
+      try {
+      } catch (err) {
+         console.log(err);
+         return res.status(400).json({
+            message: 'Unexpected Error',
+            status: 400,
+            error: err,
+         });
+      }
+   };
+
+   // Delete Single Product By Id
+   static deleteSingleProduct = async (req, res) => {
+      try {
+      } catch (err) {
+         console.log(err);
+         return res.status(400).json({
+            message: 'Unexpected Error',
+            status: 400,
+            error: err,
+         });
+      }
+   };
 }
 
 module.exports = product;
