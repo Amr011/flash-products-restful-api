@@ -2,6 +2,8 @@ const db = require('../../models/index.model');
 
 const userModel = db.user;
 
+const jwt = require('jsonwebtoken');
+
 class user {
    // Authenticate user using jwt
    static userLogin = async (req, res) => {
@@ -11,22 +13,20 @@ class user {
          const user = await userModel.findOne({
             where: {
                email: email,
-               passowrd: password,
+               password: password,
             },
          });
 
          if (!user) {
             return res
                .status(400)
-               .json({ error: 'There is no user mach the info !!' })
+               .json({ error: 'There is no user match the info !!' })
                .end();
          }
 
          const accessToken = jwt.sign(
             {
                id: user.id,
-               firstname: user.firstname,
-               lastname: user.lastname,
                email: user.email,
             },
             process.env.ACCESS_TOKEN

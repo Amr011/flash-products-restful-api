@@ -24,4 +24,4 @@ const validateToken = (req, res, next) => {
    }
 };
 
-module.exports = { validateToken, createTokens };
+module.exports = { validateToken };

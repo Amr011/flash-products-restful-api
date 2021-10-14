@@ -40,14 +40,14 @@ db.sequelize.sync({ force: true }).then(() => {
    db.category
       .bulkCreate([
          { title: 'my First Category' },
-         { title: 'my First Category' },
-         { title: 'my First Category' },
+         { title: 'my Sec Category' },
       ])
       .then((category) => {
          category
             ? console.log('category seeded successfully')
             : console.log('faild seeding category');
       });
+
    db.product
       .bulkCreate([
          {
@@ -55,12 +55,14 @@ db.sequelize.sync({ force: true }).then(() => {
             price: 19,
             startDate: Date.now(),
             duration: 12,
+            categoryId: 1,
          },
          {
             name: 'my Secound Product',
             price: 32,
             startDate: Date.now(),
             duration: 25,
+            categoryId: 1,
          },
       ])
       .then((product) => {

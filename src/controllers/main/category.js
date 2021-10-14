@@ -69,6 +69,33 @@ class category {
    // Delete Single Category By Id
    static deleteSingleCategory = async (req, res) => {
       try {
+         const categoryCheck = await categoryModel.findOne({
+            where: { id: req.params.categoryId },
+         });
+         if (categoryCheck) {
+            const categoryData = await categoryModel.destroy({
+               where: { id: categoryCheck.id },
+            });
+            if (categoryData) {
+               return res.status(200).json({
+                  success: true,
+                  status: 200,
+                  message: 'category Deleted Successfully !',
+               });
+            } else {
+               return res.status(400).json({
+                  success: false,
+                  status: 400,
+                  message: 'Faild Deleting Category !',
+               });
+            }
+         } else {
+            return res.status(400).json({
+               success: false,
+               status: 400,
+               message: 'The Category Is Not Exist !',
+            });
+         }
       } catch (err) {
          console.log(err);
          return res.status(400).json({
