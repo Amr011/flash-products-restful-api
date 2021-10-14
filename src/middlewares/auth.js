@@ -1,20 +1,14 @@
-const db = require('../models/index.model');
+const dotenv = require('dotenv');
+dotenv.config();
 
-const { sign, verify } = require('jsonwebtoken');
-
-const createTokens = (user) => {
-   const accessToken = sign(
-      { id: user.id, email: user.email },
-      process.env.ACCESS_TOKEN
-   );
-
-   return accessToken;
-};
+const { verify } = require('jsonwebtoken');
 
 const validateToken = (req, res, next) => {
    const accessToken = req.cookies['access-token'];
    if (!accessToken) {
-      return res.status(400).json({ error: '! يجب عليك تسجيل الدخول اولاً' });
+      return res.status(400).json({
+         error: 'You are not logged In, Please Loggin to continue !!',
+      });
    }
 
    try {

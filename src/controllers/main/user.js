@@ -5,27 +5,21 @@ const userModel = db.user;
 class user {
    // Authenticate user using jwt
    static userLogin = async (req, res) => {
-      const { email, password } = req.body;
+      try {
+         const { email, password } = req.body;
 
-      const user = await userModel.findOne({
-         where: {
-            email: email,
-         },
-      });
+         const user = await userModel.findOne({
+            where: {
+               email: email,
+               passowrd: password,
+            },
+         });
 
-      if (!user) {
-         return res
-            .status(400)
-            .json({ error: 'There is no user mach the info !!' })
-            .end();
-      }
-      const dbPassword = user.password;
-
-      bcrypt.compare(password, dbPassword).then((match) => {
-         if (!match) {
-            return res.status(400).json({
-               error: 'please cheak your email or password !!',
-            });
+         if (!user) {
+            return res
+               .status(400)
+               .json({ error: 'There is no user mach the info !!' })
+               .end();
          }
 
          const accessToken = jwt.sign(
@@ -47,7 +41,14 @@ class user {
             message: 'Successfully Logged In !!',
             accessToken: accessToken,
          });
-      });
+      } catch (err) {
+         console.log(err);
+         return res.status(400).json({
+            message: 'Unexpected Error',
+            status: 400,
+            error: err,
+         });
+      }
    };
 }
 
