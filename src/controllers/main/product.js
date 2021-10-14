@@ -1,6 +1,8 @@
 const db = require('../../models/index.model');
 
 const productModel = db.product;
+const featureModel = db.feature;
+const propertyModel = db.property;
 
 class product {
    // Create New Product
@@ -44,12 +46,14 @@ class product {
    // Get all products that are supposed to show up at the current time
    static getAllProducts = async (req, res) => {
       try {
-         const dateTimeNow = new Date();
-         const dateTimeFormated = `${dateTimeNow.getFullYear()}-${dateTimeNow.getMonth()}-${dateTimeNow.getDay()} ${dateTimeNow.getHours()}:${dateTimeNow.getMinutes()}:${dateTimeNow.getSeconds()}`;
+         //  const dateTimeNow = new Date();
+         //  const dateTimeFormated = `${dateTimeNow.getFullYear()}-${dateTimeNow.getMonth()}-${dateTimeNow.getDay()} ${dateTimeNow.getHours()}:${dateTimeNow.getMinutes()}:${dateTimeNow.getSeconds()}`;
 
          console.log(dateTimeFormated, dateTimeNow);
 
-         const productData = await productModel.findAll({});
+         const productData = await productModel.findAll({
+            include: [],
+         });
          if (productData) {
             return res.status(200).json({
                success: true,

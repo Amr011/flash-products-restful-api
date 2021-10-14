@@ -26,50 +26,8 @@ dotenv.config();
 const db = require('./src/models/index.model');
 db.sequelize.sync({ force: true }).then(() => {
    console.log('database re-synced successfully !');
-
-   db.user
-      .create({
-         email: 'example@example.com',
-         password: '12345',
-      })
-      .then((user) => {
-         user
-            ? console.log('user seeded successfully')
-            : console.log('faild seeding user');
-      });
-   db.category
-      .bulkCreate([
-         { title: 'my First Category' },
-         { title: 'my Sec Category' },
-      ])
-      .then((category) => {
-         category
-            ? console.log('category seeded successfully')
-            : console.log('faild seeding category');
-      });
-
-   db.product
-      .bulkCreate([
-         {
-            name: 'my First Product',
-            price: 19,
-            startDate: Date.now(),
-            duration: 12,
-            categoryId: 1,
-         },
-         {
-            name: 'my Secound Product',
-            price: 32,
-            startDate: Date.now(),
-            duration: 25,
-            categoryId: 1,
-         },
-      ])
-      .then((product) => {
-         product
-            ? console.log('product seeded successfully')
-            : console.log('faild seeding product');
-      });
+   // Seeding Data
+   require('./src/seeders/index');
 });
 
 // Main Routes Source
