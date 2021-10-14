@@ -25,14 +25,31 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 /* Database */
-db.product = require('./main/product')(sequelize, Sequelize);
-db.category = require('./main/category')(sequelize, Sequelize);
 db.user = require('./main/user')(sequelize, Sequelize);
+db.category = require('./main/category')(sequelize, Sequelize);
+db.product = require('./main/product')(sequelize, Sequelize);
+db.feature = require('./main/feature')(sequelize, Sequelize);
+db.property = require('./main/property')(sequelize, Sequelize);
 
+// Category Model O-M Product Model
 db.category.hasMany(db.product, { as: 'product' });
 db.product.belongsTo(db.category, {
    forginKey: 'categoryId',
    as: 'category',
+});
+
+// Product Model O-M Feature Model
+db.product.hasMany(db.feature, { as: 'feature' });
+db.feature.belongsTo(db.product, {
+   forginKey: 'productId',
+   as: 'product',
+});
+
+// Feature Model O-M Property Model
+db.feature.hasMany(db.property, { as: 'property' });
+db.property.belongsTo(db.feature, {
+   forginKey: 'featureId',
+   as: 'feature',
 });
 
 module.exports = db;

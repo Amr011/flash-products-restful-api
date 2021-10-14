@@ -125,7 +125,6 @@ class product {
                   success: true,
                   status: 200,
                   message: 'Products Updated Successfully !',
-                  data: productData,
                });
             } else {
                return res.status(400).json({

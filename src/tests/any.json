@@ -3,59 +3,30 @@
         "product": [
             {
                 "id": 1,
-                "name": "product 1",
-                "props": [
+                "name": "Car",
+                "property_big": [
                     {
                         "id": 1,
-                        "name": "prop 1",
+                        "name": "Engine Spcies",
                         "productId": 1,
-                        "propId": null,
-                        "values": [
+                        "property_small": [
                             {
                                 "id": 1,
-                                "name": "value 1",
+                                "key": "Engin Size",
+                                "value": 29,
                                 "propId": 1
-                            }
-                        ],
-                        "props": [
-                            {
-                                "id": 2,
-                                "name": "sub prop 1",
-                                "productId": 1,
-                                "propId": 1,
-                                "values": [
-                                    {
-                                        "id": 2,
-                                        "name": "value 2",
-                                        "propId": 21
-                                    }
-                                ]
                             },
                             {
-                                "id": 3,
-                                "name": "sub prop 2",
-                                "productId": 1,
-                                "propId": 1,
-                                "values": [
-                                    {
-                                        "id": 3,
-                                        "name": "value 3",
-                                        "propId": 3
-                                    }
-                                ]
+                                "id": 1,
+                                "key": "Engin Type",
+                                "value": "BMW Engin",
+                                "propId": 1
                             },
                             {
-                                "id": 4,
-                                "name": "sub prop 3",
-                                "productId": 1,
-                                "propId": 1,
-                                "values": [
-                                    {
-                                        "id": 4,
-                                        "name": "value 1",
-                                        "propId": 4
-                                    }
-                                ]
+                                "id": 1,
+                                "key": "Engin Metal",
+                                "value": "Iron And Copper",
+                                "propId": 1
                             }
                         ]
                     }
