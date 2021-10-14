@@ -8,6 +8,11 @@ module.exports = (sequelize, Sequelize) => {
          type: Sequelize.STRING,
          allowNull: true,
       },
+      lang: {
+         type: Sequelize.STRING,
+         default: 'en',
+         allowNull: false,
+      },
    });
 
    return property;

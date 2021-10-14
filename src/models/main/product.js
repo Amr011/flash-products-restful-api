@@ -16,6 +16,11 @@ module.exports = (sequelize, Sequelize) => {
          type: Sequelize.INTEGER,
          allowNull: false,
       },
+      lang: {
+         type: Sequelize.STRING,
+         default: 'en',
+         allowNull: false,
+      },
    });
 
    return product;

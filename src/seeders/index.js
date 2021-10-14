@@ -1,4 +1,5 @@
 const db = require('../models/index.model');
+
 module.exports = db.user
    .create({
       email: 'example@example.com',
@@ -26,12 +27,14 @@ module.exports = db.user
                      price: 19,
                      startDate: Date.now(),
                      duration: 12,
+                     lang: 'en',
                      categoryId: 1,
                   },
                   {
-                     name: 'my Secound Product',
+                     name: 'المنتج الثاني',
                      price: 32,
                      startDate: Date.now(),
+                     lang: 'ar',
                      duration: 25,
                      categoryId: 1,
                   },
@@ -46,10 +49,12 @@ module.exports = db.user
                         {
                            title: 'First Product Feature',
                            productId: 1,
+                           lang: 'en',
                         },
                         {
-                           title: 'Secound Product Feature',
+                           title: 'خاصية المنتج الثاني',
                            productId: 2,
+                           lang: 'ar',
                         },
                      ])
                      .then((feature) => {
@@ -63,11 +68,13 @@ module.exports = db.user
                                  key: 'First Product Feature Property Key',
                                  value: 'First Product Feature Property Value',
                                  featureId: 1,
+                                 lang: 'en',
                               },
                               {
-                                 key: 'Secound Product Feature Property Key',
-                                 value: 'Secound Product Feature Property Value',
+                                 key: 'مفتاح خاصية المنتج الثاني',
+                                 value: 'قيمة خاصية المنتج الثاني',
                                  featureId: 2,
+                                 lang: 'ar',
                               },
                            ])
                            .then((property) => {

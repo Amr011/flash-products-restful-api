@@ -4,6 +4,11 @@ module.exports = (sequelize, Sequelize) => {
          type: Sequelize.STRING,
          allowNull: false,
       },
+      lang: {
+         type: Sequelize.STRING,
+         default: 'en',
+         allowNull: false,
+      },
    });
 
    return feature;

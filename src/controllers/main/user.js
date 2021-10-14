@@ -28,6 +28,7 @@ class user {
             {
                id: user.id,
                email: user.email,
+               lang: req.body.lang,
             },
             process.env.ACCESS_TOKEN
          );
