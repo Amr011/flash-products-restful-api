@@ -11,5 +11,3 @@
 ## Run The Project By Typing In The Terminal
 
     npm run dev
-
-### Make Sure You Following The Installation setps correctly
