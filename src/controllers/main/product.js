@@ -43,7 +43,7 @@ class product {
                },
             ],
          });
-         if (productData.length !== 0) {
+         if (productData) {
             return res.status(200).json({
                success: true,
                status: 200,
