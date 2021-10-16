@@ -114,7 +114,7 @@ class product {
       try {
          const duration = timeDiff(req.body.startDate, req.body.endDate); // calculate duration
          const durationSTR = `duration => years:${duration.years}, months:${duration.months}, days:${duration.days}, hours:${duration.hours}, minutes:${duration.minutes}, seconds:${duration.seconds}`;
-
+         // duration STR is The Duration converted To a String
          const productData = await productModel.create({
             name: req.body.name, // product name
             price: req.body.price, // product price
