@@ -2,11 +2,11 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const developmentConfig = {
-   MYSQL_HOST: process.env.HOST,
-   MYSQL_USER: process.env.USER,
-   MYSQL_PASSWORD: process.env.PASSWORD,
-   MYSQL_DB: process.env.DB,
-   MYSQL_DIALECT: process.env.DIALECT,
+   HOST: process.env.MYSQL_HOST,
+   USER: process.env.MYSQL_USER,
+   PASSWORD: process.env.PASSWORD,
+   DB: process.env.MYSQL_DB,
+   DIALECT: process.env.MYSQL_DIALECT,
    pool: {
       max: 5,
       min: 0,
