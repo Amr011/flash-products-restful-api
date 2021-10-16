@@ -24,10 +24,14 @@ dotenv.config();
 
 // Database Configuerations
 const db = require('./src/models/index.model');
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: true }).then(async () => {
    console.log('database re-synced successfully !');
    // Seeding Data
-   require('./src/seeders/index');
+   await require('./src/seeders/user'); // Seeding user Data
+   await require('./src/seeders/category'); // Seeding Category Data
+   await require('./src/seeders/product'); // Seeding Product Data
+   await require('./src/seeders/feature'); // Seeding Feature Data
+   await require('./src/seeders/property'); // Seeding Property Data
 });
 
 // Main Routes Source

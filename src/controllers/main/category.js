@@ -2,12 +2,31 @@ const db = require('../../models/index.model');
 
 const categoryModel = db.category;
 const productMdodel = db.product;
+const featureModel = db.feature;
+const propertyModel = db.property;
 
 class category {
    // Get ALl Categories
    static getAllCategories = async (req, res) => {
       try {
-         const categoryData = await categoryModel.findAll({});
+         const categoryData = await categoryModel.findAll({
+            include: {
+               model: productMdodel,
+               as: 'product',
+               include: [
+                  {
+                     model: featureModel,
+                     as: 'feature',
+                     include: [
+                        {
+                           model: propertyModel,
+                           as: 'property',
+                        },
+                     ],
+                  },
+               ],
+            },
+         });
          if (categoryData) {
             return res.status(200).json({
                success: true,
@@ -40,6 +59,18 @@ class category {
             include: {
                model: productMdodel,
                as: 'product',
+               include: [
+                  {
+                     model: featureModel,
+                     as: 'feature',
+                     include: [
+                        {
+                           model: propertyModel,
+                           as: 'property',
+                        },
+                     ],
+                  },
+               ],
             },
          });
          if (categoryData) {

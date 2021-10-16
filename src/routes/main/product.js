@@ -5,7 +5,7 @@ const productController = require('../../controllers/main/product');
 const { validateToken } = require('../../middlewares/auth');
 
 // Create New Product
-router.route('/products').post();
+router.route('/products').post(validateToken, productController.createProduct);
 
 // Get All Products
 router.route('/products').get(validateToken, productController.getAllProducts);

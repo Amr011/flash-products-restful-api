@@ -1,4 +1,10 @@
 const db = require('../../models/index.model');
+const sequelize = require('sequelize');
+
+const Op = sequelize.Op;
+
+const moment = require('moment');
+const timeDiff = require('timediff');
 
 const productModel = db.product;
 const featureModel = db.feature;
@@ -8,16 +14,21 @@ class product {
    // Get all products that are supposed to show up at the current time
    static getAllProducts = async (req, res) => {
       try {
-         //  const dateTimeNow = new Date();
-         //  const dateTimeFormated = `${dateTimeNow.getFullYear()}-${dateTimeNow.getMonth()}-${dateTimeNow.getDay()} ${dateTimeNow.getHours()}:${dateTimeNow.getMinutes()}:${dateTimeNow.getSeconds()}`;
-
-         //  console.log(dateTimeFormated, dateTimeNow);
-
-         var lang = req.query.lang;
+         var lang = req.query.lang; // Language sellection
+         var date = new Date();
+         moment(date).format('YYYY-MM-DD HH:mm:ss'); // format date
 
          const productData = await productModel.findAll({
             where: {
-               lang: lang || 'en',
+               lang: lang || 'en', // Default Selection is english
+               [Op.or]: {
+                  startDate: {
+                     [Op.lt]: date, // StartDate < date now
+                  },
+                  endDate: {
+                     [Op.gt]: date, // EndDate > date now
+                  },
+               },
             },
             include: [
                {
@@ -32,7 +43,7 @@ class product {
                },
             ],
          });
-         if (productData) {
+         if (productData.length !== 0) {
             return res.status(200).json({
                success: true,
                status: 200,
@@ -61,8 +72,20 @@ class product {
       try {
          const productData = await productModel.findOne({
             where: { id: req.params.productId },
+            include: [
+               {
+                  model: featureModel,
+                  as: 'feature',
+                  include: [
+                     {
+                        model: propertyModel,
+                        as: 'property',
+                     },
+                  ],
+               },
+            ],
          });
-         if (productData) {
+         if (productData.length !== 0) {
             return res.status(200).json({
                success: true,
                status: 200,
@@ -89,22 +112,21 @@ class product {
    // Create New Product
    static createProduct = async (req, res) => {
       try {
-         const { name, price, startDate } = req.body;
-         const { durationByMinutes } = req.body; // Duration Minutes
-         var date = new Date();
-         // add a day
-         date.setDate(date.getDate() + 1);
-         console.log(date);
+         const duration = timeDiff(req.body.startDate, req.body.endDate); // calculate duration
+         const durationSTR = `duration => years:${duration.years}, months:${duration.months}, days:${duration.days}, hours:${duration.hours}, minutes:${duration.minutes}, seconds:${duration.seconds}`;
+
          const productData = await productModel.create({
-            name: name,
-            price: price,
-            startDate: startDate,
-            duration: duration,
+            name: req.body.name, // product name
+            price: req.body.price, // product price
+            startDate: req.body.startDate, // product start showing date
+            endDate: req.body.endDate, // product end showing date
+            duration: durationSTR,
+            lang: req.body.lang, // Product Language
          });
-         if (productData) {
+         if (productData.length !== 0) {
             return res.status(200).json({
                success: true,
-               status: res.status(),
+               status: 200,
                message: 'Product Successfully Created !',
             });
          } else {
@@ -127,14 +149,21 @@ class product {
    // Update Single Product By Id
    static updateSingleProduct = async (req, res) => {
       try {
+         const duration = timeDiff(req.body.startDate, req.body.endDate); // calculate duration
+         const durationSTR = `duration => years:${duration.years}, months:${duration.months}, days:${duration.days}, hours:${duration.hours}, minutes:${duration.minutes}, seconds:${duration.seconds}`;
+
          const productCheck = await productModel.findOne({
             where: { id: req.params.productId },
          });
          if (productCheck) {
             const productData = await productModel.update(
                {
-                  name: req.body.name,
-                  price: req.body.price,
+                  name: req.body.name, // product name
+                  price: req.body.price, // product price
+                  startDate: req.body.startDate, // product start showing date
+                  endDate: req.body.endDate, // product end showing date
+                  duration: durationSTR, // product end showing date
+                  lang: req.body.lang, // product Language
                },
                {
                   where: { id: productCheck.id },
