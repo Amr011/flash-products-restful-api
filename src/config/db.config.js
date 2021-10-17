@@ -4,7 +4,7 @@ dotenv.config();
 const developmentConfig = {
    HOST: process.env.MYSQL_HOST,
    USER: process.env.MYSQL_USER,
-   PASSWORD: process.env.PASSWORD,
+   PASSWORD: process.env.MYSQL_PASSWORD,
    DB: process.env.MYSQL_DB,
    DIALECT: process.env.MYSQL_DIALECT,
    pool: {
